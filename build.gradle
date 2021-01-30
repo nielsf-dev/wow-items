@@ -13,9 +13,34 @@ repositories {
     mavenCentral()
 }
 
+sourceSets{
+    test_integration{
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
+task test_integration(type: Test) {
+    description = 'Runs integration tests.'
+    group = 'verification'
+
+    testClassesDirs = sourceSets.test_integration.output.classesDirs
+    classpath = sourceSets.test_integration.runtimeClasspath
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.junit.jupiter:junit-jupiter:5.4.2'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    test_integrationImplementation 'org.junit.jupiter:junit-jupiter:5.4.2'
+    test_integrationImplementation 'org.springframework.boot:spring-boot-starter-web'
+    test_integrationImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test_integration{
+    useJUnitPlatform()
 }
 
 test {
