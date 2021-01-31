@@ -1,0 +1,2 @@
+client_id = 6349f54a43394a4ea132a5b55e33a40e
+client_secret = j37knGBpXktebeVf22RRsXNR6oN6bTSx

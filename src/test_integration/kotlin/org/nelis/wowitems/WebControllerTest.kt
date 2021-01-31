@@ -21,12 +21,12 @@ class WebControllerTest{
 
     @Test
     fun test() {
-        val client = HttpClient.newBuilder()
-            .version(HttpClient.Version.HTTP_1_1)
-            .build()
-
         val request = HttpRequest.newBuilder()
             .uri(URI.create("http://localhost:$port/test"))
+            .build()
+
+        val client = HttpClient.newBuilder()
+            .version(HttpClient.Version.HTTP_1_1)
             .build()
 
         val response = client.send(request, HttpResponse.BodyHandlers.ofString())
